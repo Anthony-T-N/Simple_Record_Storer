@@ -10,6 +10,7 @@ namespace Simple_Record_Storer
             Simple_Record_Storer main_program = new Simple_Record_Storer();
             while (true)
             {
+                Console.WriteLine("Enter 'e' to escape");
                 Console.Write("Enter record: ");
                 string record = Console.ReadLine();
                 if (record == "e")
@@ -21,8 +22,7 @@ namespace Simple_Record_Storer
         }
         public void write_text(string record)
         {
-            // Read from existing file or create one.
-            string path = Path.Combine(Directory.GetCurrentDirectory(), @"record.txt");
+            string path = Path.Combine(Directory.GetCurrentDirectory(), "[record].txt");
             if (!System.IO.File.Exists(path))
             {
                 Console.WriteLine("Text file doesn't exist. Creating new one.");
@@ -38,7 +38,6 @@ namespace Simple_Record_Storer
                 sw.WriteLine(record);
             }
             string text = System.IO.File.ReadAllText(path);
-            // Display the file contents to the console. Variable text is a string.
             System.Console.WriteLine(text);
         }
     }
