@@ -25,7 +25,7 @@ namespace Simple_Record_Storer
             string path = Path.Combine(Directory.GetCurrentDirectory(), "[record].txt");
             if (!System.IO.File.Exists(path))
             {
-                Console.WriteLine("Text file doesn't exist. Creating new one.");
+                Console.WriteLine("Text file does not exist. Creating a new one.");
                 using (StreamWriter sw = File.CreateText(path))
                 {
                     sw.WriteLine("<<Record Text File>>");
@@ -37,8 +37,13 @@ namespace Simple_Record_Storer
                 sw.WriteLine(DateTime.Now.ToString("yyyy-MM-dd"));
                 sw.WriteLine(record);
             }
-            string text = System.IO.File.ReadAllText(path);
-            System.Console.WriteLine(text);
+            string[] lines = System.IO.File.ReadAllLines(path);
+            for (int i = 15; i > 0; i--)
+            {
+                string last_lines = lines[lines.Length - i];
+                System.Console.WriteLine(last_lines);
+            }
+            Console.WriteLine(" ");
         }
     }
 }
