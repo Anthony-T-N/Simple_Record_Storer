@@ -38,10 +38,22 @@ namespace Simple_Record_Storer
                 sw.WriteLine(record);
             }
             string[] lines = System.IO.File.ReadAllLines(path);
-            for (int i = 15; i > 0; i--)
+            // Ensures maximum number of records shown back is kept at 15 lines (5 Records).
+            if (lines.Length > 15)
             {
-                string last_lines = lines[lines.Length - i];
-                System.Console.WriteLine(last_lines);
+                for (int i = 15; i > 0; i--)
+                {
+                    string last_lines = lines[lines.Length - i];
+                    System.Console.WriteLine(last_lines);
+                }
+            }
+            else if (lines.Length < 15)
+            {
+                for (int i = lines.Length; i > 0; i--)
+                {
+                    string last_lines = lines[lines.Length - i];
+                    System.Console.WriteLine(last_lines);
+                }
             }
             Console.WriteLine(" ");
         }
