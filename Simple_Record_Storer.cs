@@ -15,7 +15,7 @@ namespace Simple_Record_Storer
                 string record = Console.ReadLine();
                 if (record == "e")
                 {
-                    break;
+                    System.Environment.Exit(0);
                 }
                 main_program.write_text(record);
             }
@@ -25,10 +25,12 @@ namespace Simple_Record_Storer
             string path = Path.Combine(Directory.GetCurrentDirectory(), "[record].txt");
             if (!System.IO.File.Exists(path))
             {
-                Console.WriteLine("Text file does not exist. Creating a new one.");
+                Console.WriteLine(" ");
+                Console.WriteLine("[*] Text file does not exist. Creating a new one.");
+                Console.WriteLine(" ");
                 using (StreamWriter sw = File.CreateText(path))
                 {
-                    sw.WriteLine("<<Record Text File>>");
+                    sw.WriteLine("<<<< Record Text File >>>>");
                 }
             }
             using (StreamWriter sw = File.AppendText(path))
