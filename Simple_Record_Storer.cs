@@ -36,7 +36,7 @@ namespace Simple_Record_Storer
             using (StreamWriter sw = File.AppendText(path))
             {
                 sw.WriteLine(" ");
-                sw.WriteLine(DateTime.Now.ToString("yyyy-MM-dd"));
+                sw.WriteLine(DateTime.Now.ToString("dd/MM/yyyy"));
                 sw.WriteLine(record);
             }
             string[] lines = System.IO.File.ReadAllLines(path);
