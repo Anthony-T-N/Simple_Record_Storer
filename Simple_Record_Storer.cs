@@ -8,6 +8,7 @@ namespace Simple_Record_Storer
         static void Main(string[] args)
         {
             Simple_Record_Storer main_program = new Simple_Record_Storer();
+            string path = Path.Combine(Directory.GetCurrentDirectory(), "[record].txt");
             while (true)
             {
                 Console.WriteLine("Enter 'e' to escape");
@@ -17,12 +18,12 @@ namespace Simple_Record_Storer
                 {
                     System.Environment.Exit(0);
                 }
-                main_program.write_text(record);
+                main_program.write_text(record, path);
+                main_program.read_back_text(path);
             }
         }
-        public void write_text(string record)
+        public void write_text(string record, string path)
         {
-            string path = Path.Combine(Directory.GetCurrentDirectory(), "[record].txt");
             if (!System.IO.File.Exists(path))
             {
                 Console.WriteLine(" ");
@@ -30,7 +31,8 @@ namespace Simple_Record_Storer
                 Console.WriteLine(" ");
                 using (StreamWriter sw = File.CreateText(path))
                 {
-                    sw.WriteLine("<<<< Record Text File >>>>");
+                    sw.WriteLine("========<<<< Record Text File >>>>========");
+                    sw.Close();
                 }
             }
             using (StreamWriter sw = File.AppendText(path))
@@ -38,7 +40,11 @@ namespace Simple_Record_Storer
                 sw.WriteLine(" ");
                 sw.WriteLine(DateTime.Now.ToString("dd/MM/yyyy"));
                 sw.WriteLine(record);
+                sw.Close();
             }
+        }
+        public void read_back_text(string path)
+        {
             string[] lines = System.IO.File.ReadAllLines(path);
             // Ensures maximum number of records shown back is kept at 15 lines (5 Records).
             if (lines.Length > 15)
