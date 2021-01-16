@@ -11,6 +11,10 @@ namespace Simple_Record_Storer
             string path = Path.Combine(Directory.GetCurrentDirectory(), "[record].txt");
             while (true)
             {
+                if (System.IO.File.Exists(path))
+                {
+                    main_program.read_back_text(path);
+                }
                 Console.WriteLine("Enter 'e' to escape");
                 Console.Write("Enter record: ");
                 string record = Console.ReadLine();
@@ -19,7 +23,6 @@ namespace Simple_Record_Storer
                     System.Environment.Exit(0);
                 }
                 main_program.write_text(record, path);
-                main_program.read_back_text(path);
             }
         }
         public void write_text(string record, string path)
